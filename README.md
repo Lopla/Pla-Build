@@ -38,7 +38,7 @@ Make sure that you have create your project Pla.App in a root folder
 ```
 uses: actions/Pla-build@v1
 with:
-  keystore-base64: ${{ secrets.KEYSTORE }}
-  keystore-pass: ${{ secrets.PASSWORD }}
+  keystore-base64: secrets.KEYSTORE
+  keystore-pass:  secrets.PASSWORD
 
 ```
