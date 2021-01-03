@@ -4,11 +4,9 @@ echo "Starting here"
 pwd 
 ls 
 
-
-echo "Moving to home"
-cd ~/
+echo "Picking up the SDK from root folder"
+mv /Pla-refs-heads-master_2021-01-04-02-44-07 ./Pla-SDK
 ls
-pwd
 
 echo "I will not build it yet..."
 
