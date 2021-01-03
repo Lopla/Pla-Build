@@ -2,10 +2,12 @@
 name: 'Build pla artefacts'
 description: 'Generate some installable packeges for your code'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  keystore-base64:  
+    description: 'base64 serilized keystore'
     required: true
-    default: 'World'
+  keystore-pass:
+    description: 'password required to open keystore'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
@@ -13,4 +15,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.keystore-base64 }}
+    - ${{ inputs.keystore-pass }}

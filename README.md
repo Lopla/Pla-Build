@@ -1,12 +1,29 @@
-# Build pla application artefact
+# Build PLA Application artefact
 
 Uses pla framework to create artefact using pla platform
 
 ## Inputs
 
-### `who-to-greet`
+### `keystore-base64`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** Keystore that contains key used for signing your package. It's a base64 serilized keystore that can be crated using command
+```
+keytool -genkeypair -v -keystore my-relase.keystore -alias pla -keyalg RSA -keysize 2048 -validity 10000
+cat my-relase.keystore | base64
+```
+You should put it in your gith hub secrets and then pass it to your script as:
+
+```
+${{ secrets.KEYSTORE }}
+```
+
+### `keystore-pass`
+
+**Required** Keystore password. 
+You should put it in your gith hub secrets and then pass it to your script as:
+```
+${{ secrets.PASSWORD }}
+```
 
 ## Outputs
 
@@ -16,6 +33,12 @@ The time we greeted you.
 
 ## Example usage
 
-uses: actions/hello-world-docker-action@v1
+Make sure that you have create your project Pla.App in a root folder
+
+```
+uses: actions/Pla-build@v1
 with:
-  who-to-greet: 'Mona the Octocat'
+  keystore-base64: ${{ secrets.KEYSTORE }}
+  keystore-pass: ${{ secrets.PASSWORD }}
+
+```
