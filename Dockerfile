@@ -9,5 +9,4 @@ RUN unzip pla-sdk.zip
 
 RUN mv /Pla-refs-heads-master_2021-01-04-02-44-07 ~/Pla
 
-RUN ls
-RUN pwd
+ENTRYPOINT [ "/entrypoint.sh" ]
