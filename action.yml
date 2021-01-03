@@ -22,7 +22,8 @@ runs:
         unzip pla-sdk.zip
         mv  Pla-refs-heads-master_2021-01-04-02-44-07/Pla.Mobile/ ./Pla.Mobile
       shell: bash
-
+      name: Downloading pla platform sdk
+      
     - run: ls
       shell: bash
 
@@ -35,5 +36,4 @@ runs:
         jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore keystore -storepass ${{ inputs.keystore-pass }} -signedjar ~/pla_signed.apk bin/Release/com.companyname.pla.mobile.apk Pla
         ~/Library/Android/sdk/build-tools/30.0.1/zipalign -f -v 4 ~/pla_signed.apk ~/pla.apk
       shell: bash
-
-        
+  
