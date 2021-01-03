@@ -1,6 +1,14 @@
 #!/bin/sh
 
-ls ~/
+echo "Starting here"
+pwd 
+ls 
+
+
+echo "Moving to home"
+cd ~/
+ls
+pwd
 
 echo "I will not build it yet..."
 
