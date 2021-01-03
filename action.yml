@@ -45,7 +45,7 @@ runs:
     - run: echo "Keystore handled"
       shell: bash
 
-    - run: jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore keystore -storepass ${{ inputs.keystore-pass }} -signedjar ~/pla_signed.apk bin/Release/com.companyname.pla.mobile.apk Pla
+    - run: jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore keystore -storepass ${{ inputs.keystore-pass }} -signedjar ~/pla_signed.apk  /Users/runner/work/War/War/Pla.Mobile/Pla.Mobile.Android/bin/Release/com.companyname.pla.mobile.apk Pla
       name: Sign
       shell: bash
 
