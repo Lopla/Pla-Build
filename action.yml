@@ -14,16 +14,16 @@ outputs:
 runs:
   using: "composite"
   steps:
-    run: |
+    - run: |
         wget -O pla-sdk.zip https://github.com/Lopla/Pla/archive/refs/heads/master_2021-01-04-02-44-07.zip
         unzip pla-sdk.zip
         mv /Pla-refs-heads-master_2021-01-04-02-44-07/Pla.Mobile ./Pla.Mobile
       shell: bash
 
-    run: ls
+    - run: ls
       shell: bash
 
-    run: |
+    - run: |
         cd Pla.Mobile
         nuget restore Pla.Mobile.sln
         cd Pla.Mobile.Android
