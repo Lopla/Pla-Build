@@ -9,7 +9,7 @@ Uses pla framework to create artefact using pla platform
 **Required** Keystore that contains key used for signing your package. It's a base64 serilized keystore that can be crated using command
 ```
 keytool -genkeypair -v -keystore my-relase.keystore -alias pla -keyalg RSA -keysize 2048 -validity 10000
-cat my-relase.keystore | base64
+cat my-relase.keystore | base64 --w 0
 ```
 You should put it in your gith hub secrets and then pass it to your script as:
 
