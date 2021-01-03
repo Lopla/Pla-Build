@@ -1,9 +1,0 @@
-# Container image that runs your code
-FROM alpine:3.10
-
-COPY entrypoint.sh /entrypoint.sh
-
-RUN wget -O pla-sdk.zip https://github.com/Lopla/Pla/archive/refs/heads/master_2021-01-04-02-44-07.zip
-RUN unzip pla-sdk.zip
-
-ENTRYPOINT [ "/entrypoint.sh" ]
