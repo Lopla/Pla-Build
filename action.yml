@@ -14,46 +14,48 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: pwd
+    - name: "Path info"
+      run: pwd
       shell: bash
       
-    - run: |
+    - name: Downloading pla platform sdk
+      run: |
         wget -O pla-sdk.zip https://github.com/Lopla/Pla/archive/refs/heads/master_2021-01-07-06-11-44.zip
         unzip pla-sdk.zip
         mv  Pla-refs-heads-master_2021-01-07-06-11-44/Pla.Mobile/ ./Pla.Mobile
       shell: bash
-      name: Downloading pla platform sdk
+      
       
     - run: ls
       shell: bash
 
-    - run: |
+    - name: Compile Android binary
+      run: |
         cd Pla.Mobile
         nuget restore Pla.Mobile.sln
         cd Pla.Mobile.Android
         msbuild /p:Configuration=Release /t:PackageForAndroid  Pla.Mobile.Android.csproj
       shell: bash
-      name: Compile Android binary
-      
+            
     - run: echo "Compilation done"
       shell: bash
     
-    - run: echo ${{ inputs.keystore-base64 }} | base64 --decode > keystore
-      name: Extract keystore
+    - name: Extract keystore
+      run: echo ${{ inputs.keystore-base64 }} | base64 --decode > keystore
       shell: bash
       
     - run: echo "Keystore handled"
       shell: bash
 
-    - run: jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore keystore -storepass ${{ inputs.keystore-pass }} -signedjar ~/pla_signed.apk  /Users/runner/work/War/War/Pla.Mobile/Pla.Mobile.Android/bin/Release/com.companyname.pla.mobile.apk Pla
-      name: Sign
+    - name: Sign
+      run: jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore keystore -storepass ${{ inputs.keystore-pass }} -signedjar ~/pla_signed.apk  /Users/runner/work/War/War/Pla.Mobile/Pla.Mobile.Android/bin/Release/com.companyname.pla.mobile.apk Pla
       shell: bash
 
     - run: echo "Package signed"
       shell: bash
 
-    - run: ~/Library/Android/sdk/build-tools/30.0.1/zipalign -f -v 4 ~/pla_signed.apk ~/pla.apk
-      name: Zip align
+    - name: Zip align
+      run: ~/Library/Android/sdk/build-tools/30.0.1/zipalign -f -v 4 ~/pla_signed.apk ~/pla.apk
       shell: bash
 
     - run: echo "Zip aligned"
